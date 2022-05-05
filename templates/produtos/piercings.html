@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+
+<div class="container" id="container">
+    <div class="row card-columns">
+        {% if piercings %}
+            {% for piercings in piercings %}
+            <div class="card bg-dark bg-gradient GradientBorder mt-5" style="width: 26.65rem;">
+                {% if piercings.foto_piercings == '' %}
+                <img class="card-img-top" src="{% static 'img/bg-img/engrenagem.png' %}" width="405" height="405">
+                {% else %}
+                <img class="card-img-top" src="{{ piercings.foto_piercings.url }}" width="405" height="405">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-white text-center">{{ piercings.nome_piercings }}</h5>
+                </div>
+                <div class="card-footer">
+                    <p class="text-white">{{ piercings.data_inclusao|date:"M-Y" }}</p>
+                    {% if user.is_authenticated and user.is_superuser %}
+                    <p class="mt-2 text-center">
+                        <a href="{% url 'edita_piercings' piercings.id %}" type="button" class="btn btn-info">Editar</a>
+                        <a href="{% url 'deleta_piercings' piercings.id %}" type="button" class="btn btn-danger">Deletar</a>
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<!-- ##### Pagination ##### -->
+<div class="container-fluid">
+    <section class="top-catagory-area section-padding-20-0">
+        <nav>
+            {% if piercings.has_other_pages %}
+            <ul class="pagination justify-content-end">
+                {% if piercings.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ piercings.previous_page_number }}" class="page-link"
+                       style="background-color: #f1f1f1;">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" style="background-color: #f1f1f1;">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for pagina in piercings.paginator.page_range %}
+                {% if piercings.number == pagina %}
+                <li class="page-item active">
+                    <a class="page-link" style="background-color: #f1f1f1;">{{ pagina }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{pagina}}" class="page-link" style="background-color: #f1f1f1;">{{ pagina }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if piercings.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ tattoo.next_page_number }}" class="page-link"
+                       style="background-color: #f1f1f1;">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" style="background-color: #f1f1f1;">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </nav>
+    </section>
+</div>
+<!-- ##### Pagination End ##### -->
+<div class="mt-5"></div>
+{% include 'partials/_footer.html' %}
+{% endblock %}

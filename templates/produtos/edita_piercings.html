@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+
+<div class="contact-area section-padding-0-80 mt-5">
+   <div class="container">
+       <div class="row">
+           <div class="col-12">
+               <div class="section-heading text-center mt-5 text-white">
+                   <h3>Editar Piercings</h3>
+               </div>
+           </div>
+       </div>
+
+       <div class="row">
+           <div class="col-12 text-white">
+               <div class="contact-form-area">
+                   <form action="{% url 'atualiza_piercings' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                       <input type="text" id="piercings.id" class="form-control" name="piercings.id" value="{{ piercings.id }}" hidden>
+                       <div class="row">
+                           <div class="col-12 col-lg-12 mt-4">
+                               <label for="nome_piercings">Nome do Piercing:</label>
+                               <input type="text" id="nome_piercings" class="form-control" name="nome_piercings" value="{{ piercings.nome_piercings }}" required>
+                           </div>
+                           <div class="col-12 col-lg-6 mt-4">
+                               <label for="data_inclusao">Data de inclusão:</label>
+                               <input type="date" id="data_inclusao" class="form-control" name="data_inclusao" value="{{ piercings.data_inclusao }}" required>
+                           </div>
+                           <div class="col-12 col-lg-4 mt-4">
+                               <label for="foto_piercings">Foto do Piercings:</label>
+                               <img class="rounded mx-auto d-block" src="{{ piercings.foto_piercings.url }}" height="300">
+                           </div>
+                           <div class="col-12 col-lg-4 mt-4">
+                               <label for="foto_piercings">Adicionar nova foto:</label>
+                               <input type="file" class="form-control custom-file" name="foto_piercings" id="foto_piercings">
+                           </div>
+                           <div class="col-12 col-lg-4 text-center mt-5">
+                               {% if piercings.destaque_piercings == True %}
+                               <input type="checkbox" class="form-check-input" name="destaque" id="destaque" checked>
+                               {% else %}
+                               <input type="checkbox" class="form-check-input" name="destaque" id="destaque">
+                               {% endif %}
+                               <label for="destaque">Piercings destaque?</label>
+                           </div>
+                           <div class="col-12 text-center mt-5">
+                               <button class="btn btn-success delicious-btn mt-30" type="submit">Atualizar Piercings</button>
+                           </div>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+<div class="mt-5"></div>
+{% include 'partials/_footer.html' %}
+{% endblock %}

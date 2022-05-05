@@ -1,0 +1,94 @@
+body {
+    /*background: linear-gradient(to top, #000000, #434343);*/
+    /*background: linear-gradient(rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0));*/
+    /*background: linear-gradient(to top, rgb(16, 22, 33), rgb(75, 85, 99));*/
+    background: rgb(0, 0, 0);
+    letter-spacing: 4px;
+}
+.GradientBorder {
+    position: relative;
+    width: 400px;
+    padding: 20px 0;
+    text-align: center;
+}
+.GradientBorder::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(50deg, #ff5520, #750cf2, #0cbcf2);
+    z-index: -1;
+}
+.GradientBorder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(50deg, #ff5520, #750cf2, #0cbcf2);
+    z-index: -2;
+    filter: blur(40px);
+}
+
+@font-face {
+    font-family: neon;
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
+
+.neon {
+    font-family: neon;
+    color: #ff0000;
+    font-size: 40px;
+    text-shadow: 0 0 3vw #ff0000;
+}
+
+.flux {
+    font-family: neon;
+    color: #9900ff;
+    font-size: 40px;
+    text-shadow: 0 0 3vw #9900ff;
+}
+
+.neon {
+    animation: neon 2s ease infinite;
+    -moz-animation: neon 2s ease infinite;
+    -webkit-animation: neon 2s ease infinite;
+}
+
+@keyframes neon {
+
+    0%,
+    100% {
+        text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
+        color: #f3c601;
+    }
+
+    50% {
+        text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
+        color: #f3c601;
+    }
+}
+
+.flux {
+    animation: flux 2s linear infinite;
+    -moz-animation: flux 2s linear infinite;
+    -webkit-animation: flux 2s linear infinite;
+    -o-animation: flux 2s linear infinite;
+}
+
+@keyframes flux {
+
+    0%,
+    100% {
+        text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+        color: #28D7FE;
+    }
+
+    50% {
+        text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+        color: #146C80;
+    }
+}

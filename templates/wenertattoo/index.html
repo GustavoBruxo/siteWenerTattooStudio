@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+{% include 'partials/_banner.html' %}
+
+<div class="text-center">
+    <h5>Destaques</h5>
+</div>
+<!-- ##### Best Receipe Area Start ##### -->
+
+<div class="container">
+    <div class="row card-columns">
+        {% if destaques %}
+            {% for destaques in destaques %}
+            <div class="card bg-dark bg-gradient GradientBorder mt-5" style="width: 26.65rem;">
+                {% if destaques.foto_tattoo == '' and destaques.foto_piercings == ''%}
+                    <img class="card-img-top" src="{% static 'img/bg-img/engrenagem.png' %}" width="400" height="400">
+                {% else %}
+                    <img class="card-img-top" src="{{ destaques.foto_tattoo.url }}" width="400" height="400">
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title text-white text-center">{{ destaques.nome_tattoo }}</h4>
+                </div>
+                <div class="card-footer">
+                    <p class="text-white">{{ destaques.data_inclusao|date:"M-Y" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<!-- ##### Pagination ##### -->
+<div class="container">
+    <section class="top-catagory-area section-padding-20-0">
+        <nav>
+            {% if tattoo.has_other_pages %}
+            <ul class="pagination justify-content-end">
+                {% if tattoo.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ tattoo.previous_page_number }}" class="page-link"
+                       style="background-color: #f1f1f1;">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" style="background-color: #f1f1f1;">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for pagina in tattoo.paginator.page_range %}
+                {% if tattoo.number == pagina %}
+                <li class="page-item active">
+                    <a class="page-link" style="background-color: #f1f1f1;">{{ pagina }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{pagina}}" class="page-link" style="background-color: #f1f1f1;">{{ pagina }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if tattoo.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ tattoo.next_page_number }}" class="page-link"
+                       style="background-color: #f1f1f1;">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" style="background-color: #f1f1f1;">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </nav>
+    </section>
+</div>
+<!-- ##### Pagination End ##### -->
+<div class="mt-5"></div>
+
+{% include 'partials/_footer.html' %}
+{% endblock %}

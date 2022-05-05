@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+
+<div class="text-center mt-5 text-white">
+    <h5>Opções</h5>
+</div>
+
+<!-- ##### Best Receipe Area Start ##### -->
+<div class="container">
+    <div class="row card-columns">
+        <div class="card bg-dark bg-gradient GradientBorder mt-5" style="width: 26.65rem;">
+            <img class="card-img-top" src="{% static 'img/bg-img/icons8-logout-arredondado-acima-100.png' %}" width="400" height="400">
+            <div class="card-body">
+                <a href="{% url 'cria_tattoo' %}" class="text-dark nav-link">
+                    <h5 class="card-title text-white text-center">Cadastrar Tattoo</h5>
+                </a>
+            </div>
+        </div>
+        <div class="card bg-dark bg-gradient GradientBorder mt-5" style="width: 26.65rem;">
+            <img class="card-img-top" src="{% static 'img/bg-img/icons8-logout-arredondado-acima-100.png' %}" width="400" height="400">
+            <div class="card-body">
+                <a href="{% url 'cria_piercings' %}" class="text-dark nav-link">
+                    <h5 class="card-title text-white text-center">Cadastrar Piercings</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Best Receipe Area End ##### -->
+
+{% include 'partials/_footer.html' %}
+{% endblock %}

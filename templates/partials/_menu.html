@@ -1,0 +1,47 @@
+{% load static %}
+<header class="p-5">
+    <section class="row d-flex align-items-center">
+        <!-- Navbar -->
+        <ul class="nav col-4 justify-content-center text-center">
+            <li><a href="{% url 'index' %}" class="nav-link text-white">Home</a></li>
+            <li><a href="{% url 'tattoo' %}" class="nav-link text-white">Tattoos</a></li>
+            <li><a href="{% url 'piercings' %}" class="nav-link text-white">Piercings</a></li>
+            <li><a href="{% url 'agenda' %}" class="nav-link text-white">Agenda</a></li>
+        </ul>
+        <!-- Logo -->
+        <div class="col-4 justify-content-center text-center">
+            <span class="text-white text-center neon">Wenner</span>
+            <span class="text-white text-center flux">Tattoo</span>
+            <span class="text-white text-center neon">Studio</span>
+        </div>
+        <!-- Navbar -->
+        <ul class="nav col-4 justify-content-center text-center">
+            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+                <li><a href="{% url 'cadastros' %}" class="nav-link text-white">Cadastros</a></li>
+            {% endif %}
+                <li><a href="{% url 'logout' %}" class="nav-link text-white">Logout</a></li>
+            {% else %}
+                <!--<li><a href="{% url 'cadastro' %}" class="nav-link text-white">Criar Conta</a></li>-->
+                <li><a href="{% url 'login' %}" class="nav-link text-white">Login</a></li>
+            {% endif %}
+            <!-- Ícones redes sociais -->
+            <li>
+                <div class="social-info">
+                    <!-- Facebook -->
+                    <a class="btn btn-link btn-floating btn-lg text-white"
+                        href="https://www.facebook.com/wener.maggot" role="button">
+                        <i class="fab fa-facebook-f"></i></a>
+                    <!-- Instagram -->
+                    <a class="btn btn-link btn-floating btn-lg text-white"
+                       href="#!" role="button">
+                        <i class="fab fa-instagram"></i></a>
+                    <!-- WhatsApp -->
+                    <a class="btn btn-link btn-floating btn-lg text-white"
+                       href="http://api.whatsapp.com/send?1=pt_BR&phone=553199163657" role="button">
+                        <i class="fab fa-whatsapp"></i></a>
+                </div>
+            </li>
+        </ul>
+    </section>
+</header>
