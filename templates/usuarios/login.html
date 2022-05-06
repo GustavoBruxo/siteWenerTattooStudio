@@ -31,6 +31,14 @@
                             <div class="col-12 text-center mt-5">
                                 <button class="btn btn-success" type="submit">Acessar sua conta</button>
                             </div>
+                            <div class="col-12 text-center mt-3">
+                                <button type="button" class="btn btn-primary" onclick="exibirCriarConta()">Ainda não tem conta? Clique aqui</button>
+                            </div>
+                            <p class="text-center mt-2 mb-2" style="display: block;">Ou</p>
+                            <div class="social-info text-center">
+                                <a class="btn btn-link" id="facebook" href="#!"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-link" id="google" href="#!"><i class="fab fa-google"></i></a>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -39,5 +47,12 @@
     </div>
 </div>
 <div class="mt-5"></div>
+
+<script>
+function exibirCriarConta()
+{
+     location.href = "{% url 'cadastro' %}";
+}
+</script>
 {% include 'partials/_footer.html' %}
 {% endblock %}
