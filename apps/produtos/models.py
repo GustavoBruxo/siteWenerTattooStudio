@@ -11,7 +11,7 @@ class Tattoo(models.Model):
 
     def __str__(self):
         return self.nome_tattoo
-
+    
 
 class Piercings(models.Model):
     nome_piercings = models.CharField(max_length=100)
